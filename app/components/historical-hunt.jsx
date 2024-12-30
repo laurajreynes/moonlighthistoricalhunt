@@ -33,13 +33,13 @@ const loadProgress = () => {
   return null;
 };
 
-const getTemperature = (distance) => {
-  if (distance <= 20) return { color: 'text-emerald-500', message: "You're here!", icon: '🎯' };
-  if (distance <= 30) return { color: 'text-orange-500', message: "Very hot!", icon: '🔥' };
-  if (distance <= 40) return { color: 'text-orange-400', message: "Getting warmer!", icon: '☀️' };
-  if (distance <= 60) return { color: 'text-yellow-500', message: "Lukewarm", icon: '😊' };
-  if (distance <= 80) return { color: 'text-blue-400', message: "Cold", icon: '❄️' };
-  return { color: 'text-blue-500', message: "Very cold", icon: '🥶' };
+const formatDistance = (feet) => {
+  if (feet >= 5280) {
+    const miles = (feet / 5280).toFixed(1);
+    return `${miles} miles`;
+  } else {
+    return `${feet} ft`;
+  }
 };
 
 const calculateDistance = (lat1, lon1, lat2, lon2) => {
@@ -52,68 +52,77 @@ const calculateDistance = (lat1, lon1, lat2, lon2) => {
     Math.sin(dLon/2) * Math.sin(dLon/2); 
   const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
   const d = R * c; // Distance in km
-  return Math.round(d * 1000); // Convert to meters and round
+  return Math.round(d * 3280.84); // Convert to feet
 };
 
 const deg2rad = (deg) => {
   return deg * (Math.PI/180);
 };
 
+const getTemperature = (distance) => {
+  if (distance <= 66) return { color: 'text-emerald-500', message: "You're here!", icon: '🎯' };
+  if (distance <= 98) return { color: 'text-orange-500', message: "Very hot!", icon: '🔥' };
+  if (distance <= 131) return { color: 'text-orange-400', message: "Getting warmer!", icon: '☀️' };
+  if (distance <= 197) return { color: 'text-yellow-500', message: "Lukewarm", icon: '😊' };
+  if (distance <= 262) return { color: 'text-blue-400', message: "Cold", icon: '❄️' };
+  return { color: 'text-blue-500', message: "Very cold", icon: '🥶' };
+};
+
 const locations = [
   {
-    hint: `Start where the railroad changed it all,\nBy the old depot, standing tall.\nChugging trains gave birth to a place so fine,\nA mountain gem formed by the railroad line.\nNear the caboose, a marker stands to see,\n—One mile in each direction shaped our history.`,
+    hint: "Start where the railroad changed it all. By the old depot, standing tall. Chugging trains gave birth to a place so fine, A mountain gem formed by the railroad line. Near the caboose, a marker stands to see, —One mile in each direction shaped our history.",
     location: { lat: 35.61567, lng: -82.32018 },
     fact: "In 1912, a devastating fire destroyed much of downtown Black Mountain, including the original train depot. When Southern Railway brought Asheville's firefighters by rail to help, it sparked a legacy of community resilience that shaped the town we see today.",
     historicalHint: "This spot marked the mile point where trains would slow down entering town - a crucial railway junction that helped establish Black Mountain as a thriving mountain community."
   },
   {
-    hint: `Step into yesteryear where mercantile thrived,\na place where old-timey goods keep history alive.\nA wooden screen door squeaks out a welcome so clear,\ninside, some tools or a hidden souvenir calls out for you, dear.`,
+    hint: "Step into yesteryear where mercantile thrived, a place where old-timey goods keep history alive. A wooden screen door squeaks out a welcome so clear, inside, some tools or a hidden souvenir calls out for you, dear.",
     location: { lat: 35.6243, lng: -82.8640 },
     fact: "Opened in the 1920s, Town Hardware & General Store has been a mainstay of downtown Black Mountain for nearly a century. Locals and visitors alike love its creaky wooden floors, old-fashioned screen door, and shelves packed with everything from quirky toys and candy to genuine hardware supplies.",
     historicalHint: "This store has been the town's go-to shopping spot since the Roaring Twenties, when general stores were the heart of small-town commerce."
   },
   {
-    hint: `From glamour shots to double shots,\nthis building's changed its tune.\nFirst came Gragg with camera in hand,\nthen hairstyles rose in bloom.\nIts river rock walls stand steadfast still,\nnow beans are brewing galore—\nuncover a relic of old days before!`,
+    hint: "From glamour shots to double shots, this building's changed its tune. First came Gragg with camera in hand, then hairstyles rose in bloom. Its river rock walls stand steadfast still, now beans are brewing galore— uncover a relic of old days before!",
     location: { lat: 35.6232, lng: -82.8636 },
     fact: "Originally built by Gragg, a photographer, this building briefly functioned as a funeral home with a drive-by viewing window in what is now the alley. Later it became a beauty salon, and eventually the Dripolator!",
     historicalHint: "In the early days of photography, local photographers like Gragg were essential chroniclers of town life and special occasions."
   },
   {
-    hint: `Next, visit a lake that's surrounded by trees,\na beautiful spot where you can feel the breeze.\nSeek a lake named for a native warrior's tool,\nWhere Seven Sisters' peaks make views so cool.`,
+    hint: "Next, visit a lake that's surrounded by trees, a beautiful spot where you can feel the breeze. Seek a lake named for a native warrior's tool, Where Seven Sisters' peaks make views so cool.",
     location: { lat: 35.6245, lng: -82.8633 },
     fact: "Lake Tomahawk is entirely man-made, created in the mid-1900s as a community-driven project. The lake's name references its rough 'tomahawk' shape, and it sits just below the Seven Sisters mountain range.",
     historicalHint: "This lake was built by the community in the mid-1900s, transforming what was once marshy lowland into a beloved gathering place."
   },
   {
-    hint: `Up the road stands a grand stone gate,\nguiding visitors into a world first shaped by faith.\nPass under the arches—history abounds,\na peaceful retreat where nature surrounds.`,
+    hint: "Up the road stands a grand stone gate, guiding visitors into a world first shaped by faith. Pass under the arches—history abounds, a peaceful retreat where nature surrounds.",
     location: { lat: 35.6794, lng: -82.8269 },
     fact: "The iconic stone arches at Montreat welcome over 30,000 annual visitors to this historic retreat. In the early 1900s, visitors paid a small toll at this gate—hence its original nickname, the 'Toll Gate.' Today, Montreat hosts dozens of religious conferences, youth gatherings, and educational programs throughout the year.",
     historicalHint: "The stone gate marked the boundary between the public world and this private mountain retreat, where early visitors paid a toll to enter."
   },
   {
-    hint: `Pass through the gate, where the mountains rise,\nsoft ripples shimmer beneath sunny skies\nwhere a quiet lake honors one woman's name\nreflecting calm in the mountain air's domain`,
+    hint: "Pass through the gate, where the mountains rise, soft ripples shimmer beneath sunny skies where a quiet lake honors one woman's name reflecting calm in the mountain air's domain",
     location: { lat: 35.6796, lng: -82.8265 },
     fact: "Lake Susan sits at the center of Montreat's peaceful retreat grounds, and local tradition holds that it was named for Susan, a family member of one of Montreat's early developers.",
     historicalHint: "This serene spot has been the heart of Montreat since its early days, when it was created as part of the original retreat center design."
   },
   {
-    hint: `Pass back through the gate with open eyes,\nTo the arts center under mountain skies.\nSeek the mural with paints and clay,\nA vibrant story on display.`,
+    hint: "Pass back through the gate with open eyes, To the arts center under mountain skies. Seek the mural with paints and clay, A vibrant story on display.",
     location: { lat: 35.6231, lng: -82.8635 },
     fact: "The 'Community' mural, painted in 2019 by Scott Allred and Jeremy Russell, beautifully captures Black Mountain's vibrant history. Depicting scenes of painting, pottery, and daily life, this artwork honors the town's rich cultural heritage.",
     historicalHint: "The Arts Center building itself was once the town hall, a hub of civic life before becoming a creative center."
   },
   {
-    hint: `To complete your hunt with a tasty dine,\nVisit a spot with history's sign.\nFlat Creek's flood once swept the land,\nBut this 1907 home still stands.`,
+    hint: "To complete your hunt with a tasty dine, Visit a spot with history's sign. Flat Creek's flood once swept the land, But this 1907 home still stands.",
     location: { lat: 35.6240, lng: -82.8643 },
     fact: "On July 16, 1916, Flat Creek flooded much of Black Mountain after more than 22 inches of rain fell in just 24 hours. Mayor George Washington Stepp's two-story Queen Anne-style home, built in 1907, remarkably escaped destruction.",
     historicalHint: "This Queen Anne-style home belonged to Mayor Stepp, who led the town through the devastating flood of 1916."
   }
 ];
 const HistoricalHunt = () => {
-    const [distance, setDistance] = useState(100);
+    const [distance, setDistance] = useState(328); // Starting at roughly 100m in feet
     const [currentLocation, setCurrentLocation] = useState(0);
     const [foundLocations, setFoundLocations] = useState([]);
-    const [lastDistance, setLastDistance] = useState(100);
+    const [lastDistance, setLastDistance] = useState(328);
     const [showHint, setShowHint] = useState(false);
     const [userPosition, setUserPosition] = useState(null);
     const [gpsError, setGpsError] = useState(null);
@@ -157,13 +166,13 @@ const HistoricalHunt = () => {
             target.lat, target.lng
           );
           
-          // Only update sounds and distance if there's been significant movement
-          if (Math.abs(newDistance - distance) > 2) { // 2-meter threshold
+          // Only update sounds and distance if there's been significant movement (5 feet)
+          if (Math.abs(newDistance - distance) > 5) {
             setLastDistance(distance);
             setDistance(newDistance);
   
             // Play appropriate sound based on movement
-            if (newDistance <= 20 && !foundLocations.includes(currentLocation)) {
+            if (newDistance <= 66 && !foundLocations.includes(currentLocation)) {
               playSound('found');
             } else if (newDistance < distance) {
               playSound('closer');
@@ -198,8 +207,8 @@ const HistoricalHunt = () => {
       if (currentLocation < locations.length - 1) {
         setFoundLocations([...foundLocations, currentLocation]);
         setCurrentLocation(currentLocation + 1);
-        setDistance(100);
-        setLastDistance(100);
+        setDistance(328); // Reset to roughly 100m in feet
+        setLastDistance(328);
         setShowHint(false);
       } else {
         setFoundLocations([...foundLocations, currentLocation]);
@@ -214,7 +223,7 @@ const HistoricalHunt = () => {
     };
   
     const currentClue = locations[currentLocation];
-    const isLocationFound = distance <= 20;
+    const isLocationFound = distance <= 66; // 66 feet (about 20 meters)
     const temperature = getTemperature(distance);
   
     return (
@@ -292,7 +301,7 @@ const HistoricalHunt = () => {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Navigation2 className="h-5 w-5 text-gray-600" />
-                  <span className="text-gray-700">{distance}m away</span>
+                  <span className="text-gray-700">{formatDistance(distance)} away</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Thermometer className={`h-5 w-5 ${temperature.color}`} />
@@ -332,7 +341,7 @@ const HistoricalHunt = () => {
                       Congratulations! 🎉
                     </h4>
                     <p className="text-emerald-700">
-                      You've completed the Black Mountain Historical Hunt!
+                      You've completed Moonlight's Black Mountain Historical Hunt!
                     </p>
                   </div>
                 )}
