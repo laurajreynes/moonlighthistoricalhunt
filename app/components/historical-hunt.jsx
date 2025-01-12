@@ -89,7 +89,7 @@ const locations = [
   },
   {
     hint: "Next, visit a lake that's surrounded by trees, a beautiful spot where you can feel the breeze. Seek a lake named for a native warrior's tool, Where Seven Sisters' peaks make views so cool.",
-    location: { lat: 35.618841738087305, lng: --82.32856102295243 },
+    location: { lat: 35.618841738087305, lng: -82.32856102295243 },
     fact: "Lake Tomahawk is entirely man-made, created in the mid-1900s as a community-driven project. The lake's name references its rough 'tomahawk' shape, and it sits just below the Seven Sisters mountain range.",
     historicalHint: "This lake was built by the community in the mid-1900s, transforming what was once marshy lowland into a beloved gathering place."
   },
