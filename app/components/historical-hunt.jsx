@@ -61,10 +61,10 @@ const deg2rad = (deg) => {
 
 const getTemperature = (distance) => {
   if (distance <= 70) return { color: 'text-emerald-500', message: "You're here!", icon: '🎯' };
-  if (distance <= 150) return { color: 'text-orange-500', message: "Very hot!", icon: '🔥' };
-  if (distance <= 300) return { color: 'text-orange-400', message: "Getting warmer!", icon: '☀️' };
-  if (distance <= 450) return { color: 'text-yellow-500', message: "Lukewarm", icon: '😊' };
-  if (distance <= 500) return { color: 'text-blue-400', message: "Cold", icon: '❄️' };
+  if (distance <= 250) return { color: 'text-orange-500', message: "Very hot!", icon: '🔥' };
+  if (distance <= 450) return { color: 'text-orange-400', message: "Getting warmer!", icon: '☀️' };
+  if (distance <= 500) return { color: 'text-yellow-500', message: "Lukewarm", icon: '😊' };
+  if (distance <= 600) return { color: 'text-blue-400', message: "Cold", icon: '❄️' };
   return { color: 'text-blue-500', message: "Very cold", icon: '🥶' };
 };
 
