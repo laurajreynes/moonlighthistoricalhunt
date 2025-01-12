@@ -60,11 +60,11 @@ const deg2rad = (deg) => {
 };
 
 const getTemperature = (distance) => {
-  if (distance <= 66) return { color: 'text-emerald-500', message: "You're here!", icon: '🎯' };
-  if (distance <= 98) return { color: 'text-orange-500', message: "Very hot!", icon: '🔥' };
-  if (distance <= 131) return { color: 'text-orange-400', message: "Getting warmer!", icon: '☀️' };
-  if (distance <= 197) return { color: 'text-yellow-500', message: "Lukewarm", icon: '😊' };
-  if (distance <= 262) return { color: 'text-blue-400', message: "Cold", icon: '❄️' };
+  if (distance <= 70) return { color: 'text-emerald-500', message: "You're here!", icon: '🎯' };
+  if (distance <= 150) return { color: 'text-orange-500', message: "Very hot!", icon: '🔥' };
+  if (distance <= 300) return { color: 'text-orange-400', message: "Getting warmer!", icon: '☀️' };
+  if (distance <= 450) return { color: 'text-yellow-500', message: "Lukewarm", icon: '😊' };
+  if (distance <= 500) return { color: 'text-blue-400', message: "Cold", icon: '❄️' };
   return { color: 'text-blue-500', message: "Very cold", icon: '🥶' };
 };
 
@@ -77,43 +77,43 @@ const locations = [
   },
   {
     hint: "Step into yesteryear where mercantile thrived, a place where old-timey goods keep history alive. A wooden screen door squeaks out a welcome so clear, inside, some tools or a hidden souvenir calls out for you, dear.",
-    location: { lat: 35.6243, lng: -82.8640 },
+    location: { lat: 35.61784303323257, lng: -82.32062720507768 },
     fact: "Opened in the 1920s, Town Hardware & General Store has been a mainstay of downtown Black Mountain for nearly a century. Locals and visitors alike love its creaky wooden floors, old-fashioned screen door, and shelves packed with everything from quirky toys and candy to genuine hardware supplies.",
     historicalHint: "This store has been the town's go-to shopping spot since the Roaring Twenties, when general stores were the heart of small-town commerce."
   },
   {
     hint: "From glamour shots to double shots, this building's changed its tune. First came Gragg with camera in hand, then hairstyles rose in bloom. Its river rock walls stand steadfast still, now beans are brewing galore— uncover a relic of old days before!",
-    location: { lat: 35.6232, lng: -82.8636 },
+    location: { lat: 35.61641014886177, lng: -82.3211580707765 },
     fact: "Originally built by Gragg, a photographer, this building briefly functioned as a funeral home with a drive-by viewing window in what is now the alley. Later it became a beauty salon, and eventually the Dripolator!",
     historicalHint: "In the early days of photography, local photographers like Gragg were essential chroniclers of town life and special occasions."
   },
   {
     hint: "Next, visit a lake that's surrounded by trees, a beautiful spot where you can feel the breeze. Seek a lake named for a native warrior's tool, Where Seven Sisters' peaks make views so cool.",
-    location: { lat: 35.6245, lng: -82.8633 },
+    location: { lat: 35.618841738087305, lng: --82.32856102295243 },
     fact: "Lake Tomahawk is entirely man-made, created in the mid-1900s as a community-driven project. The lake's name references its rough 'tomahawk' shape, and it sits just below the Seven Sisters mountain range.",
     historicalHint: "This lake was built by the community in the mid-1900s, transforming what was once marshy lowland into a beloved gathering place."
   },
   {
     hint: "Up the road stands a grand stone gate, guiding visitors into a world first shaped by faith. Pass under the arches—history abounds, a peaceful retreat where nature surrounds.",
-    location: { lat: 35.6794, lng: -82.8269 },
+    location: { lat: 35.63845659679587, lng: -82.31204666200995 },
     fact: "The iconic stone arches at Montreat welcome over 30,000 annual visitors to this historic retreat. In the early 1900s, visitors paid a small toll at this gate—hence its original nickname, the 'Toll Gate.' Today, Montreat hosts dozens of religious conferences, youth gatherings, and educational programs throughout the year.",
     historicalHint: "The stone gate marked the boundary between the public world and this private mountain retreat, where early visitors paid a toll to enter."
   },
   {
     hint: "Pass through the gate, where the mountains rise, soft ripples shimmer beneath sunny skies where a quiet lake honors one woman's name reflecting calm in the mountain air's domain",
-    location: { lat: 35.6796, lng: -82.8265 },
+    location: { lat: 35.64736368317345, lng: -82.29859662586684 },
     fact: "Lake Susan sits at the center of Montreat's peaceful retreat grounds, and local tradition holds that it was named for Susan, a family member of one of Montreat's early developers.",
     historicalHint: "This serene spot has been the heart of Montreat since its early days, when it was created as part of the original retreat center design."
   },
   {
     hint: "Pass back through the gate with open eyes, To the arts center under mountain skies. Seek the mural with paints and clay, A vibrant story on display.",
-    location: { lat: 35.6231, lng: -82.8635 },
+    location: { lat: 35.61619222494764, lng: -82.32149409841998 },
     fact: "The 'Community' mural, painted in 2019 by Scott Allred and Jeremy Russell, beautifully captures Black Mountain's vibrant history. Depicting scenes of painting, pottery, and daily life, this artwork honors the town's rich cultural heritage.",
     historicalHint: "The Arts Center building itself was once the town hall, a hub of civic life before becoming a creative center."
   },
   {
     hint: "To complete your hunt with a tasty dine, Visit a spot with history's sign. Flat Creek's flood once swept the land, But this 1907 home still stands.",
-    location: { lat: 35.6240, lng: -82.8643 },
+    location: { lat: 35.6146687732417, lng: -82.32029863850495 },
     fact: "On July 16, 1916, Flat Creek flooded much of Black Mountain after more than 22 inches of rain fell in just 24 hours. Mayor George Washington Stepp's two-story Queen Anne-style home, built in 1907, remarkably escaped destruction.",
     historicalHint: "This Queen Anne-style home belonged to Mayor Stepp, who led the town through the devastating flood of 1916."
   }
