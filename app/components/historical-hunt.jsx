@@ -89,7 +89,7 @@ const locations = [
   },
   {
     hint: "Next, visit a lake that's surrounded by trees, a beautiful spot where you can feel the breeze. Seek a lake named for a native warrior's tool, Where Seven Sisters' peaks make views so cool.",
-    location: { lat: 35.618841738087305, lng: -82.32856102295243 },
+    location: { lat: 35.61973412179167, lng: -82.3277531065954 },
     fact: "Lake Tomahawk is entirely man-made, created in the mid-1900s as a community-driven project. The lake's name references its rough 'tomahawk' shape, and it sits just below the Seven Sisters mountain range.",
     historicalHint: "This lake was built by the community in the mid-1900s, transforming what was once marshy lowland into a beloved gathering place."
   },
@@ -101,7 +101,7 @@ const locations = [
   },
   {
     hint: "Pass through the gate, where the mountains rise, soft ripples shimmer beneath sunny skies where a quiet lake honors one woman's name reflecting calm in the mountain air's domain",
-    location: { lat: 35.64736368317345, lng: -82.29859662586684 },
+    location: { lat: 35.6471560859223, lng: -82.29908662083768 },
     fact: "Lake Susan sits at the center of Montreat's peaceful retreat grounds, and local tradition holds that it was named for Susan, a family member of one of Montreat's early developers.",
     historicalHint: "This serene spot has been the heart of Montreat since its early days, when it was created as part of the original retreat center design."
   },
@@ -223,7 +223,7 @@ const HistoricalHunt = () => {
     };
   
     const currentClue = locations[currentLocation];
-    const isLocationFound = distance <= 66; // 66 feet (about 20 meters)
+    const isLocationFound = distance <= 150; // 150 feet (about 45 meters)
     const temperature = getTemperature(distance);
   
     return (
